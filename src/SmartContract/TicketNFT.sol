@@ -1,60 +1,71 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+// Compatible with OpenZeppelin Contracts ^5.0.0
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MyNFT is ERC721, Ownable {
-    using Strings for uint256;
+contract TokenNFT is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Pausable, Ownable {
+    uint256 private _nextTokenId;
 
-    // Mapping from token ID to token URI
-    mapping(uint256 => string) private _tokenURIs;
+    constructor(address initialOwner)
+        ERC721("Token NFT", "TNFT")
+        Ownable(initialOwner)
+    {}
 
-    // Counter for generating unique token IDs
-    uint256 private _tokenIdCounter;
-
-    constructor(string memory name, string memory symbol) ERC721(name, symbol) {
-        _tokenIdCounter = 1; // Start token IDs from 1
-    }
-
-    // Function to set the base URI
-    function _baseURI() internal view virtual override returns (string memory) {
+    function _baseURI() internal pure override returns (string memory) {
         return "https://orange-solid-cattle-398.mypinata.cloud/ipfs/";
     }
 
-    // Function to mint a new token
-    function mint(address to, string memory _tokenURI) public onlyOwner returns (uint256) {
-        uint256 tokenId = _tokenIdCounter;
-        _tokenIdCounter += 1;
-
-        _mint(to, tokenId);
-        _setTokenURI(tokenId, _tokenURI);
-
-        return tokenId;
+    function pause() public onlyOwner {
+        _pause();
     }
 
-    // Internal function to set the token URI
-    function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual {
-        require(_exists(tokenId), "ERC721Metadata: URI set of nonexistent token");
-        _tokenURIs[tokenId] = _tokenURI;
+    function unpause() public onlyOwner {
+        _unpause();
     }
 
-    // Function to get the token URI
-    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
-        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+    function publicMint(string memory uri) public  {
+        uint256 tokenId = _nextTokenId++;
+        _safeMint(msg.sender, tokenId);
+        _setTokenURI(tokenId, uri);
+    }
 
-        string memory _tokenURI = _tokenURIs[tokenId];
-        string memory base = _baseURI();
+    // The following functions are overrides required by Solidity.
 
-        // If there is no base URI, return the token URI.
-        if (bytes(base).length == 0) {
-            return _tokenURI;
-        }
-        // If both are set, concatenate the baseURI and tokenURI (via abi.encodePacked).
-        if (bytes(_tokenURI).length > 0) {
-            return string(abi.encodePacked(base, _tokenURI));
-        }
+    function _update(address to, uint256 tokenId, address auth)
+        internal
+        override(ERC721, ERC721Enumerable, ERC721Pausable)
+        returns (address)
+    {
+        return super._update(to, tokenId, auth);
+    }
 
+    function _increaseBalance(address account, uint128 value)
+        internal
+        override(ERC721, ERC721Enumerable)
+    {
+        super._increaseBalance(account, value);
+    }
+
+    function tokenURI(uint256 tokenId)
+        public
+        view
+        override(ERC721, ERC721URIStorage)
+        returns (string memory)
+    {
         return super.tokenURI(tokenId);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Enumerable, ERC721URIStorage)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
     }
 }
