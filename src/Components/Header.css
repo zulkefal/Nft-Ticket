@@ -1,0 +1,32 @@
+.main-header{
+  height: 20%;
+  background: rgb(2, 11, 29);
+  padding: 1%;
+  align-content: center;
+  display: flex;
+justify-content: center;
+align-items: center; 
+  font-size: 1.2rem;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 100%;
+    font-size: 1.2rem;
+  }
+
+  li{
+    list-style: none;
+    padding: 10px;
+  }
+ 
+nav li:hover{
+    color: aquamarine;
+}
+ h3{
+  }

@@ -1,0 +1,137 @@
+.mainNFT {
+    display: flex;
+    flex-direction: row;
+    margin: 2%;
+    margin: 2%;
+    color: wheat;
+    gap: 2%;
+    height: 100%;
+}
+
+.add-img {
+    width: 50%;
+    border-radius: 5%;
+    overflow: hidden;
+    height: 70vh;
+    border: 2px solid white;
+    padding: 2%;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    background:#020b1d;
+
+}
+
+.add-img input {
+    margin-left: 25%;
+    margin-top: 2%;
+
+}
+
+
+.add-img img {
+    width: 100%;
+    height: 50vh;
+    object-fit: contain;
+}
+
+.details {
+    width: 50%;
+    border: 2px solid white;
+    height: 70vh;
+    border-radius: 5%;
+    padding: 2%;
+    box-shadow: rgba(136, 122, 122, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    background:#020b1d;
+
+}
+.main-nft2{
+    /* padding: 15px; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.inputField {
+    /* display: flex;
+    height: 11%;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    border-bottom: 0.5rem solid transparent; */
+    margin-bottom: 10px;
+    width: 80%;
+    background-color: rgba(248, 248, 248, 0.438);
+    /* margin: 0.5rem 2rem 0.5rem 1rem; */
+    border-radius: 0.5rem;
+    padding: 5px;
+    color: white;
+}
+
+.inputField:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    
+}
+input{
+     padding: 15px;
+    box-sizing: border-box;
+    background-color: transparent;
+    border: NONE;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+input::placeholder {
+    color: white;}
+
+
+button {
+    font-size: 1rem;
+    border-radius: 20%;
+    padding: 2%;
+
+}
+
+.Upload {
+    margin-top: 3%;
+    margin-left: 25%;
+    margin-right: 6%;
+}
+.Upload:hover{
+    background-color: #3f51b5;
+    color: white;
+    border: 2px solid white;
+}
+
+
+
+.img-hash {
+
+    margin-left: 2%;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.nft-button
+{
+    margin-left: 40%;
+    margin-top: 5%;
+    margin-right: 6%;
+    padding: 2%;
+    font-size: 1rem;
+    border-radius: 10%;
+    background-color: #3f51b5;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+}
+.address{
+    width: 95%;
+}
+.address input{
+    width: 100%;
+}
+a{
+    color: red;
+}
